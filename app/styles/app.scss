@@ -1,0 +1,29 @@
+$gray: #e7e7e7;
+$primary: #258be2;
+$headers: #3286c8;
+$white: #ffffff;
+$dark: #263238;
+$font-size-base: 16px;
+$font-size-large: ceil(($font-size-base * 1.25)) !default;
+$font-size-xlarge: ceil(($font-size-base * 1.6)) !default;
+$font-size-small: ceil(($font-size-base * 0.85)) !default;
+$font-size-h1: floor(($font-size-base * 2.6)) !default;
+$font-size-h2: floor(($font-size-base * 2.15)) !default;
+$font-size-h3: ceil(($font-size-base * 1.7)) !default;
+$font-size-h4: ceil(($font-size-base * 1.25)) !default;
+
+$sans-serif: "Open Sans", sans-serif;
+$fafers: "Fafers Technical";
+$monospace: Menlo, Monaco, Consolas, "Courier New", Courier, monospace;
+
+.chart {
+    width: 1000px;
+    height: 772px;
+    .header {
+        background-color: $headers;
+        padding: 10px;
+        text-align: center;
+        color: $white;
+        font-size: $font-size-large;
+    }
+}
