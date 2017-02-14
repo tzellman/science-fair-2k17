@@ -8,12 +8,14 @@ export default Highcharts.extend({
 
     classNames: ["chart-bar"],
     theme: defaultTheme,
+    type: 'column',
+    legendEnabled: false,
 
     chartOptions: computed(function () {
 
-        return {
+        let options = {
             chart: {
-                type: 'column'
+                type: this.get("type")
             },
             title: {
                 text: this.get("title") || ''
@@ -22,24 +24,32 @@ export default Highcharts.extend({
                 type: 'category',
                 title: {
                     text: this.get("xTitle")
-                }
+                },
+                categories: this.get("categories")
             },
             yAxis: {
-                min: 0,
-                max: 10,
+                min: this.get("yMin"),
+                max: this.get("yMax"),
                 title: {
                     text: this.get("yTitle"),
                 },
                 plotBands: this.get("plotBands") || []
             },
             legend: {
-                enabled: false,
+                enabled: this.get("legendEnabled"),
             },
             tooltip: {
                 formatter: this.get("formatter"),
                 crosshairs: true
             }
         };
+
+        // override some complete sections
+        if (this.get("yAxis")) {
+            options.yAxis = this.get("yAxis");
+        }
+
+        return options;
     }),
 
     content: alias("data")
