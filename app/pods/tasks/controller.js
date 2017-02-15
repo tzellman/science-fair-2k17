@@ -52,9 +52,10 @@ export default Controller.extend({
     }),
 
     sortedData: computed("model", function () {
-        const sortFunc = (d1,
-                          d2) => d1.name === 'Control' ? -1 : (d2.name === 'Control' ? 1 : ((d1.switching + d1.repeating) < (d2.switching + d2.repeating) ? -1 : 1));
-        return this.get("model").sort(sortFunc);
+        let data = this.get("model");
+        data.forEach(d => d.total = d.switching + d.repeating);
+        const sortFunc = (d1, d2) => d1.label === 'Control' ? -1 : (d1.total <= d2.total ? -1 : 1);
+        return data.sort(sortFunc);
     }),
 
     juggleData: computed("sortedData", function () {
@@ -79,6 +80,7 @@ export default Controller.extend({
     }),
 
     categories: computed("sortedData", function () {
+        console.log(this.get("sortedData"));
         return this.get("sortedData").map(d => d.label);
     }),
 
