@@ -1,19 +1,22 @@
-<div class="chart">
-    <div class="header">Focus</div>
-    {{chart-bar
-        data=focusData
-        categories=categories
-        yAxis=focusYAxis
-        legendEnabled=true
-    }}
-</div>
+{{#each focusCharts as |chart|}}
+    <div class="chart">
+        <div class="header">{{chart.title}}</div>
+        {{chart-bar
+            data=chart.series
+            yMin=chart.yMin
+            yMax=chart.yMax
+            yTitle=chart.yTitle
+        }}
+    </div>
+{{/each}}
+
 
 <div class="chart">
     <div class="header">Juggling Tasks</div>
     {{chart-bar
         data=juggleData
         categories=categories
-        yAxis=juggleYAxis
+        yAxis=timeAxis
         legendEnabled=true
     }}
 </div>
